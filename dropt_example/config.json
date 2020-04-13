@@ -1,0 +1,33 @@
+{
+    "config":{
+        "experimentName": "food_classification_TPE",
+        "maxExecDuration": "2h",
+        "maxTrialNum": 30,
+        "parentProject": "None",
+        "model": "food_classification",
+        "updatePeriod": 60,
+        "tuner": {
+                      "builtinTunerName": "TPE",
+                      "classArgs": {"optimize_mode": "maximize"}
+                  }
+    },
+
+    "params": {
+        "net": "resnet18",
+        "image_size": 128,
+        "early_stop": 5,
+        "train_batchsize": 256,
+        "lr": 0.1,
+        "pretrain": true,
+        "weight_decay": 0.001
+    },
+
+    "search_space": {
+        "net": {"_type": "choice", "_value": ["resnet18"]},
+        "train_batchsize": {"_type": "choice", "_value": [32, 64, 128, 256]},
+        "lr": {"_type": "choice", "_value": [0.1, 0.01, 0.001, 0.0001, 0.00001]},
+        "image_size": {"_type": "choice", "_value": [32, 64, 128, 256, 312]},
+        "early_stop": {"_type": "choice", "_value": [5, 8, 10]},
+        "weight_decay": {"_type": "choice", "_value": [0.01, 0.001, 0.0001, 0.00001]}
+    }
+}
